@@ -23,7 +23,7 @@
 <div id="info">
     <a href="http://threejs.org" target="_blank">three.js</a> - OBJLoader + MTLLoader
 </div>
-<div id="testDiv" style="width: 500px;">
+<div id="testDiv">
 
 </div>
 
@@ -32,7 +32,6 @@
 <script src="/script/three/loaders/DDSLoader.js"></script>
 <script src="/script/three/loaders/MTLLoader.js"></script>
 <script src="/script/three/loaders/OBJLoader.js"></script>
-<script src="/script/three/loaders/OBJLoader2.js"></script>
 
 <script src="/script/three/Detector.js"></script>
 <script src="/script/three/stats.min.js"></script>
@@ -56,15 +55,19 @@
     function init() {
 
         container = document.createElement( 'div' );
-        document.getElementById("testDiv").appendChild(container);
-        //document.body.appendChild( container );
+        document.body.appendChild( container );
+
+        camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 1, 2000 );
+        camera.position.z = 250;
+
+        // scene
 
         scene = new THREE.Scene();
 
-        var ambient = new THREE.AmbientLight( 0x444444 );
+        var ambient = new THREE.AmbientLight( 0xffffff );
         scene.add( ambient );
 
-        var directionalLight = new THREE.DirectionalLight( 0xffeedd );
+        var directionalLight = new THREE.DirectionalLight( 0xffffff );
         directionalLight.position.set( 0, 0, 1 ).normalize();
         scene.add( directionalLight );
 
