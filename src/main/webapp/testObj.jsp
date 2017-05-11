@@ -57,8 +57,10 @@
         container = document.createElement( 'div' );
         document.body.appendChild( container );
 
-        camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 1, 2000 );
-        camera.position.z = 250;
+        camera = new THREE.PerspectiveCamera( 1000, window.innerWidth / window.innerHeight, 1, 10000 );
+        camera.position.z = -30;
+        camera.position.x = 3000;
+        camera.position.y = -10000;
 
         // scene
 
@@ -85,17 +87,17 @@
         THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 
         var mtlLoader = new THREE.MTLLoader();
-        mtlLoader.setPath( 'obj/' );
-        mtlLoader.load( '00.mtl', function( materials ) {
+        mtlLoader.setPath( 'obj/03/' );
+        mtlLoader.load( '03.mtl', function( materials ) {
 
             materials.preload();
 
             var objLoader = new THREE.OBJLoader();
             objLoader.setMaterials( materials );
-            objLoader.setPath( 'obj/' );
-            objLoader.load( '00.obj', function ( object ) {
+            objLoader.setPath( 'obj/03/' );
+            objLoader.load( '03.obj', function ( object ) {
 
-                object.position.y = - 95;
+                object.position.y = - 1;
                 scene.add( object );
 
             }, onProgress, onError );
@@ -150,7 +152,11 @@
         camera.position.x += ( mouseX - camera.position.x ) * .05;
         camera.position.y += ( - mouseY - camera.position.y ) * .05;
 
-        camera.lookAt( scene.position );
+        camera.lookAt( {
+            x:3000,
+            y:3000,
+            z:3000
+        });
 
         renderer.render( scene, camera );
 
