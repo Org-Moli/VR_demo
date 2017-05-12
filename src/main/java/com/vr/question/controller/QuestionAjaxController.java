@@ -56,7 +56,7 @@ public class QuestionAjaxController {
     @RequestMapping( value = "saveQuestionInfo", produces = { "application/json;charset=UTF-8" } )
     public @ResponseBody String saveQuestionInfo(Integer userId, String userName, String content)
     {
-        Map<String,Object> paramsMap = new HashMap<>();
+        Map<String,Object> paramsMap = new HashMap<String,Object>();
         paramsMap.put("userId",userId);
         paramsMap.put("userName",userName);
         paramsMap.put("content",content);
@@ -87,7 +87,7 @@ public class QuestionAjaxController {
     @RequestMapping( value = "saveQuestionRemark", produces = { "application/json;charset=UTF-8" } )
     public @ResponseBody String saveQuestionRemark(Integer userId, String userName, String content, Integer questionId)
     {
-        Map<String,Object> paramsMap = new HashMap<>();
+        Map<String,Object> paramsMap = new HashMap<String,Object>();
         paramsMap.put("userId",userId);
         paramsMap.put("userName",userName);
         paramsMap.put("content",content);

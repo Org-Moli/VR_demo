@@ -1,7 +1,5 @@
 package com.vr.pcIndex.controller;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +28,7 @@ public class PCIndexController {
 	@RequestMapping(value = "/sreachIndexInfo")
     public ModelAndView sreachIndexInfo(Model model,String cjUserName,String lcNum,String dName,String startTime,String endTime) {
 		System.out.println(cjUserName+":"+lcNum+":"+dName+":"+startTime+":"+endTime);
-		Map<String, Object> gatherInfo = pcIndexMapper.getGatherInfo(cjUserName,dName,lcNum,startTime,endTime);
+		pcIndexMapper.getGatherInfo(cjUserName,dName,lcNum,startTime,endTime);
         return new ModelAndView("pc/index");
     }
 }

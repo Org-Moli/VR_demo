@@ -19,7 +19,7 @@
 				</div>
 				<div class="height_r">
 					<input type="text" placeholder="输入关键字" class="header_r_inp"/>
-					<img src="../img/index/sousuo.png" class="sousuo"/>
+					<img src="../img/index//sousuo.png" class="sousuo"/>
 					<div class="touxiang">
 						<img src="../img/index/touxiang.png" />
 						<span>李奇峰</span>
@@ -32,7 +32,7 @@
 			<div class="box_l">
 				<div class="l_h">
 					<span class="h_left">腾飞创新园</span>
-					<!--<img src="../img/index/index_25.gif" />-->
+					<!--<img src="../img/index//index_25.gif" />-->
 					<span class="h_right">全景合成</span>
 				</div>
 				<div class="l_h_img">
@@ -42,6 +42,7 @@
 			<div class="box_r">
 				<div class="r_h">
 					<span class="header_new">最新上传</span>
+					<span class="header_new header_new_1">筛选结果</span>
 					<!--<input id="date-range0" size="30" value="">-->
 					<div class="delect">
 						
@@ -128,7 +129,7 @@
 						<p class="title"><span>一</span>幢<span>一</span>层全景图</p>
 						<p style="color:#999999">更新于<span>2017年5月3日16：38</span></p>
 						<div class="pinlun">
-							<img src="../img/index/xiaoxicion.png"/>
+							<img src="../img/index/tupiancion.png"/>
 							<span>4</span>
 						</div>
 						<div class="xiaoxi">
@@ -142,7 +143,7 @@
 						<p class="title"><span>一</span>幢<span>一</span>层全景图</p>
 						<p style="color:#999999">更新于<span>2017年5月3日16：38</span></p>
 						<div class="pinlun">
-							<img src="../img/index/xiaoxicion.png"/>
+							<img src="../img/index/tupiancion.png"/>
 							<span>4</span>
 						</div>
 						<div class="xiaoxi">
@@ -156,7 +157,7 @@
 						<p class="title"><span>一</span>幢<span>一</span>层全景图</p>
 						<p style="color:#999999">更新于<span>2017年5月3日16：38</span></p>
 						<div class="pinlun">
-							<img src="../img/index/xiaoxicion.png"/>
+							<img src="../img/index/tupiancion.png"/>
 							<span>4</span>
 						</div>
 						<div class="xiaoxi">
@@ -170,7 +171,7 @@
 						<p class="title"><span>一</span>幢<span>一</span>层全景图</p>
 						<p style="color:#999999">更新于<span>2017年5月3日16：38</span></p>
 						<div class="pinlun">
-							<img src="../img/index/xiaoxicion.png"/>
+							<img src="../img/index/tupiancion.png"/>
 							<span>4</span>
 						</div>
 						<div class="xiaoxi">
@@ -184,7 +185,7 @@
 						<p class="title"><span>一</span>幢<span>一</span>层全景图</p>
 						<p style="color:#999999">更新于<span>2017年5月3日16：38</span></p>
 						<div class="pinlun">
-							<img src="../img/index/xiaoxicion.png"/>
+							<img src="../img/index/tupiancion.png"/>
 							<span>4</span>
 						</div>
 						<div class="xiaoxi">
@@ -198,7 +199,7 @@
 						<p class="title"><span>一</span>幢<span>一</span>层全景图</p>
 						<p style="color:#999999">更新于<span>2017年5月3日16：38</span></p>
 						<div class="pinlun">
-							<img src="../img/index/xiaoxicion.png"/>
+							<img src="../img/index/tupiancion.png"/>
 							<span>4</span>
 						</div>
 						<div class="xiaoxi">
@@ -212,7 +213,7 @@
 						<p class="title"><span>一</span>幢<span>一</span>层全景图</p>
 						<p style="color:#999999">更新于<span>2017年5月3日16：38</span></p>
 						<div class="pinlun">
-							<img src="../img/index/xiaoxicion.png"/>
+							<img src="../img/index/tupiancion.png"/>
 							<span>4</span>
 						</div>
 						<div class="xiaoxi">
@@ -226,7 +227,7 @@
 						<p class="title"><span>一</span>幢<span>一</span>层全景图</p>
 						<p style="color:#999999">更新于<span>2017年5月3日16：38</span></p>
 						<div class="pinlun">
-							<img src="../img/index/xiaoxicion.png"/>
+							<img src="../img/index/tupiancion.png"/>
 							<span>4</span>
 						</div>
 						<div class="xiaoxi">
@@ -240,7 +241,7 @@
 						<p class="title"><span>一</span>幢<span>一</span>层全景图</p>
 						<p style="color:#999999">更新于<span>2017年5月3日16：38</span></p>
 						<div class="pinlun">
-							<img src="../img/index/xiaoxicion.png"/>
+							<img src="../img/index/tupiancion.png"/>
 							<span>4</span>
 						</div>
 						<div class="xiaoxi">
@@ -254,7 +255,7 @@
 						<p class="title"><span>一</span>幢<span>一</span>层全景图</p>
 						<p style="color:#999999">更新于<span>2017年5月3日16：38</span></p>
 						<div class="pinlun">
-							<img src="../img/index/xiaoxicion.png"/>
+							<img src="../img/index/tupiancion.png"/>
 							<span>4</span>
 						</div>
 						<div class="xiaoxi">
@@ -268,7 +269,7 @@
 						<p class="title"><span>一</span>幢<span>一</span>层全景图</p>
 						<p style="color:#999999">更新于<span>2017年5月3日16：38</span></p>
 						<div class="pinlun">
-							<img src="../img/index/xiaoxicion.png"/>
+							<img src="../img/index/tupiancion.png"/>
 							<span>4</span>
 						</div>
 						<div class="xiaoxi">
@@ -282,7 +283,7 @@
 						<p class="title"><span>一</span>幢<span>一</span>层全景图</p>
 						<p style="color:#999999">更新于<span>2017年5月3日16：38</span></p>
 						<div class="pinlun">
-							<img src="../img/index/xiaoxicion.png"/>
+							<img src="../img/index/tupiancion.png"/>
 							<span>4</span>
 						</div>
 						<div class="xiaoxi">
@@ -296,7 +297,7 @@
 						<p class="title"><span>一</span>幢<span>一</span>层全景图</p>
 						<p style="color:#999999">更新于<span>2017年5月3日16：38</span></p>
 						<div class="pinlun">
-							<img src="../img/index/xiaoxicion.png"/>
+							<img src="../img/index/tupiancion.png"/>
 							<span>4</span>
 						</div>
 						<div class="xiaoxi">
@@ -310,7 +311,7 @@
 						<p class="title"><span>一</span>幢<span>一</span>层全景图</p>
 						<p style="color:#999999;">更新于<span>2017年5月3日16：38</span></p>
 						<div class="pinlun">
-							<img src="../img/index/xiaoxicion.png"/>
+							<img src="../img/index/tupiancion.png"/>
 							<span>4</span>
 						</div>
 						<div class="xiaoxi">
@@ -324,7 +325,7 @@
 						<p class="title"><span>一</span>幢<span>一</span>层全景图</p>
 						<p style="color:#999999">更新于<span>2017年5月3日16：38</span></p>
 						<div class="pinlun">
-							<img src="../img/index/xiaoxicion.png"/>
+							<img src="../img/index/tupiancion.png"/>
 							<span>4</span>
 						</div>
 						<div class="xiaoxi">
