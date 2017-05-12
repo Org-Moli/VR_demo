@@ -47,4 +47,16 @@ public interface QuestionInfoMapper {
     })
     int updateStateById(@Param("state") Integer state, @Param("id") Integer id);
 
+
+    @Select({
+            "select * from gather_info",
+            "where id = #{id}"
+    })
+    Map<String,Object> getGatherInfoById(@Param("id") Integer id);
+
+    @Select({
+            "select * from gather_info",
+            "where chuang = #{chuang} and storey= #{storey}"
+    })
+    List<Map<String,Object>> listByChuangAndStorey(@Param("chuang") String chuang, @Param("storey") String storey);
 }
