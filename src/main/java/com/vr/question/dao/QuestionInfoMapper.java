@@ -18,7 +18,8 @@ public interface QuestionInfoMapper {
 
     @Select({
             "select * from question_info",
-            "where mainId = #{mainId}"
+            "where mainId = #{mainId}",
+            "order by createTime desc"
     })
     List<Map<String,Object>> listQuestionInfoByMainId(@Param("mainId") Integer mainId);
 
@@ -30,10 +31,11 @@ public interface QuestionInfoMapper {
 
     @Insert({
             "insert into question_info",
-            "(userId,userName,content,mainId,state,createTime)",
+            "(userId,userName,content,mainId,post,state,createTime)",
             "values",
-            "(#{userId},#{userName},#{content},#{mainId},0,now())"
+            "(#{userId},#{userName},#{content},#{mainId},#{post},0,now())"
     })
+    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", keyColumn = "id",before=false, resultType=Integer.class)
     int insert(Map<String,Object> paramsMap);
 
     @Delete({
