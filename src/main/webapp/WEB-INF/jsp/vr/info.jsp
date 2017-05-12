@@ -735,6 +735,7 @@
                 userId:-1,
                 userName:"${org_userName}",
                 content:_remarkContent,
+                post:"${org_post}",
                 questionId:$("#remarkContent").attr("alt")
             },
             success: function ( result )
