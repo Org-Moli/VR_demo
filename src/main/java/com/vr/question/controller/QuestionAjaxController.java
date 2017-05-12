@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,16 +50,18 @@ public class QuestionAjaxController {
         JSONObject jsonObject = new JSONObject();
         Map<String,Object> questionMap = questionInfoMapper.getQuestionInfoById(id);
         jsonObject.put("questionMap",questionMap);
+        jsonObject.put("date",new SimpleDateFormat("MM月dd日 HH:mm").format(questionMap.get("createTime")));
         jsonObject.put("success",true);
         return jsonObject.toString();
     }
 
     @RequestMapping( value = "saveQuestionInfo", produces = { "application/json;charset=UTF-8" } )
-    public @ResponseBody String saveQuestionInfo(Integer id, Integer userId, String userName, String content)
+    public @ResponseBody String saveQuestionInfo(Integer id, Integer userId, String userName,String post, String content)
     {
         Map<String,Object> paramsMap = new HashMap<String,Object>();
         paramsMap.put("userId",userId);
         paramsMap.put("userName",userName);
+        paramsMap.put("post",post);
         paramsMap.put("content",content);
         paramsMap.put("mainId",id);
         questionInfoMapper.insert(paramsMap);
@@ -66,6 +69,7 @@ public class QuestionAjaxController {
         questionInfoMapper.updateCount(id);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("success",true);
+        jsonObject.put("id",paramsMap.get("id"));
         return jsonObject.toString();
     }
 
@@ -88,13 +92,14 @@ public class QuestionAjaxController {
     }
 
     @RequestMapping( value = "saveQuestionRemark", produces = { "application/json;charset=UTF-8" } )
-    public @ResponseBody String saveQuestionRemark(Integer userId, String userName, String content, Integer questionId)
+    public @ResponseBody String saveQuestionRemark(Integer userId, String userName, String post,String content, Integer questionId)
     {
         Map<String,Object> paramsMap = new HashMap<String,Object>();
         paramsMap.put("userId",userId);
         paramsMap.put("userName",userName);
         paramsMap.put("content",content);
         paramsMap.put("questionId",questionId);
+        paramsMap.put("post",post);
         questionRemarkMapper.insert(paramsMap);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("success",true);
@@ -105,7 +110,11 @@ public class QuestionAjaxController {
     public @ResponseBody String listQuestionRemarkByQuestionId(Integer questionId)
     {
         JSONObject jsonObject = new JSONObject();
-        List remarkList = questionRemarkMapper.listQuestionRemarkByQuestionId(questionId);
+        List<Map<String,Object>> remarkList = questionRemarkMapper.listQuestionRemarkByQuestionId(questionId);
+        for(Map map : remarkList)
+        {
+            map.put("createDate",new SimpleDateFormat("MM月dd日 HH:mm").format(map.get("createTime")));
+        }
         jsonObject.put("remarkList",remarkList);
         jsonObject.put("success",true);
         return jsonObject.toString();

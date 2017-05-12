@@ -515,7 +515,7 @@
     </div>
     <div class="jiaoliu_content" id="jiaoliuContent">
         <c:forEach items="${listQuestionInfo}" var="question">
-            <div class="jiaoliu_content_list">
+            <div class="jiaoliu_content_list" onclick="showContent(${question.id});">
                 <p class="jiaoliu_content_list_left">
                     <img src="/img/touxiang.jpg"  />${question.userName}
                 </p>
@@ -537,38 +537,29 @@
         <div  class="kuang_content2_wen_left">
             <img src="/img/touxiang.jpg" />
         </div>
-        <div class="kuang_content2_wen_right">
-            <p style="color:#000 ;"><big style="color:#189FD9;font-size: 16px;">王琦</big><small>施工员</small></p>
-            <p class="kuang_content2_wen_right_time">5月5日&nbsp;14:00</p>
-            <p class="kuang_content2_wen_right_text">都是国内热胡歌忽热河谷柔荑花ire 和人工湖努热滹沱河红歌会如如何0和人工湖努热滹沱河红歌会如如何</p>
+        <div class="kuang_content2_wen_right" id="conte_tmplDiv">
+            <p style="color:#000 ;"><big style="color:#189FD9;font-size: 16px;" id="userNameTr"></big><small id="postTr"></small></p>
+            <p class="kuang_content2_wen_right_time" id="dateTr"></p>
+            <p class="kuang_content2_wen_right_text" id="contetnTr"></p>
         </div>
     </div>
     <div style="clear: both;"></div>
-    <div class="kuang_content2_da">
-        <p>2个回答</p>
+    <div class="kuang_content2_da" id="kuang_content2_daDiv">
+        <p id="kuangCnt" alt="">0个回答</p>
+        <script type="text/x-jquery-tmpl" id="kuangTmpl">
         <div class="kuang_content2_da_right">
             <img src="/img/touxiang.jpg" />
-            <p style="color:#189FD9;font-size: 16px;">王琦</p>
-            <p class="kuang_content2_da_right_time"><span>施工员</span><span>5月5日&nbsp;14:00</span></p>
-            <p class="kuang_content2_da_right_text">都是国内热胡歌忽热河谷柔荑花ire 和人工湖努热滹沱河红歌会如如何0和人工湖努热滹沱河红歌会如如何</p>
+            <p style="color:#189FD9;font-size: 16px;">#[$data.userName]</p>
+            <p class="kuang_content2_da_right_time"><span>#[$data.post]</span><span>#[$data.createDate]</span></p>
+            <p class="kuang_content2_da_right_text">#[$data.content]</p>
         </div>
-        <div class="kuang_content2_da_right">
-            <img src="/img/touxiang.jpg" />
-            <p style="color:#189FD9;font-size: 16px;">王琦</p>
-            <p class="kuang_content2_da_right_time"><span>施工员</span><span>5月5日&nbsp;14:00</span></p>
-            <p class="kuang_content2_da_right_text">都是国内热胡歌忽热河谷柔荑花ire 和人工湖努热滹沱河红歌会如如何0和人工湖努热滹沱河红歌会如如何</p>
-        </div>
-        <div class="kuang_content2_da_right">
-            <img src="/img/touxiang.jpg" />
-            <p style="color:#189FD9;font-size: 16px;">王琦</p>
-            <p class="kuang_content2_da_right_time"><span>施工员</span><span>5月5日&nbsp;14:00</span></p>
-            <p class="kuang_content2_da_right_text">都是国内热胡歌忽热河谷柔荑花ire 和人工湖努热滹沱河红歌会如如何0和人工湖努热滹沱河红歌会如如何</p>
-        </div>
+        </script>
     </div>
     <div class="kuang_content2_da_footer">
-        <input type="text" placeholder="请输入评论"/><button>回复</button>
+        <input type="text" placeholder="请输入评论" alt="" id="remarkContent"/><button type="button" onclick="saveRemark();">回复</button>
     </div>
 </div>
+<script type="text/javascript" src="/script/jquery.tmpl.min.js"></script>
 <script>
     function askQuestion()
     {
@@ -578,7 +569,6 @@
             alert("请输入问题内容");
             return;
         }
-        var _userName = "test";
         $.ajax({
             url:'/questionAjax/saveQuestionInfo.do',
             contentType: "application/x-www-form-urlencoded; charset=utf-8",
@@ -587,7 +577,8 @@
             data:{
                 userId:-1,
                 id:${id},
-                userName:_userName,
+                userName:"${org_userName}",
+                post:"${org_post}",
                 content:_questionContent
             },
             success: function ( result )
@@ -599,8 +590,8 @@
                     var _day = date.getDay() < 10 ? ("0" + date.getDay()) : date.getDay() ;
                     $(".kuang_content1").hide();
                     $("#questionContent").val("");
-                    var _html = "<div class=\"jiaoliu_content_list\">";
-                    _html += "  <p class=\"jiaoliu_content_list_left\"><img src=\"/img/touxiang.jpg\"  />" + _userName + " </p>";
+                    var _html = "<div class=\"jiaoliu_content_list\" onclick='showContent("+result.id+");'>";
+                    _html += "  <p class=\"jiaoliu_content_list_left\"><img src=\"/img/touxiang.jpg\"  />${org_userName}</p>";
                     _html += "  <p class=\"jiaoliu_content_list_right\">"+_questionContent+"</p>";
                     _html += "<p class=\"jiaoliu_content_list_time\">"+ _month  +"月"+ _day +"日"+date.getHours()+":"+date.getMinutes()+"</p>";
                     $("#jiaoliuContent").prepend(_html);
@@ -671,11 +662,103 @@
         },200);
 
     });
-    $(".jiaoliu_content_list").click(function(){
+    function showContent(id){
+        $("#remarkContent").attr("alt",id);
+        $.ajax({
+            url:'/questionAjax/getQuestionById.do',
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            type: "POST",
+            dataType: "json",
+            data:{
+                id:id
+            },
+            success: function ( result )
+            {
+                $("#userNameTr").text(result.questionMap.userName);
+                $("#postTr").text(result.questionMap.post);
+                $("#dateTr").text(result.questionMap.date);
+                $("#contetnTr").text(result.questionMap.content);
+
+                loadRemarkInfo(id);
+            }
+        });
+
         $(".kuang").animate({opacity:"0.6"}, 0);
         $(".kuang,.kuang_content2").show();
         $(".kuang_content1").animate({height : "220px"}, 500);
-    });
+    }
+
+    function loadRemarkInfo(id)
+    {
+        $.ajax({
+            url:'/questionAjax/listQuestionRemarkByQuestionId.do',
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            type: "POST",
+            dataType: "json",
+            async:false,
+            data:{
+                questionId:id
+            },
+            success: function ( result )
+            {
+                $(".kuang_content2_da_right").remove();
+                if(result.remarkList != undefined && result.remarkList.length > 0)
+                {
+                    $("#kuang_content2_daDiv").css("display","block");
+                    $("#kuangCnt").text(result.remarkList.length + "个回答");
+                    $("#kuangTmpl").tmpl(result.remarkList).insertAfter("#kuangCnt");
+                    $("#kuangCnt").attr("alt",result.remarkList.length);
+                }
+                else
+                {
+                    $("#kuang_content2_daDiv").css("display","none");
+                    $("#kuangCnt").attr("alt","0");
+                }
+            }
+        });
+    }
+    function saveRemark()
+    {
+        var _remarkContent = $("#remarkContent").val();
+        if(_remarkContent.length == 0)
+        {
+            alert("请输入评论内容");
+            return;
+        }
+        $.ajax({
+            url:'/questionAjax/saveQuestionRemark.do',
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            type: "POST",
+            dataType: "json",
+            data:{
+                userId:-1,
+                userName:"${org_userName}",
+                content:_remarkContent,
+                questionId:$("#remarkContent").attr("alt")
+            },
+            success: function ( result )
+            {
+                if(result.success)
+                {
+                    var date = new Date();
+                    var _month = (date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1;
+                    var _day = date.getDay() < 10 ? ("0" + date.getDay()) : date.getDay() ;
+                    var _html = "<div class=\"kuang_content2_da_right\">";
+                        _html +=    "<img src=\"/img/touxiang.jpg\" />";
+                        _html +=    "<p style=\"color:#189FD9;font-size: 16px;\">${org_userName}</p>";
+                        _html +=    "<p class=\"kuang_content2_da_right_time\"><span>${org_post}</span><span>"+_month+"月"+_day+"日"+date.getHours()+":"+date.getMinutes()+"</span></p>";
+                        _html +=    "<p class=\"kuang_content2_da_right_text\">"+_remarkContent+"</p>";
+                        _html += "</div>";
+                    $("#kuangCnt").after(_html);
+                    var _kuangCnt = $("#kuangCnt").attr("alt");
+                    $("#kuangCnt").attr("alt",parseInt(_kuangCnt) + 1);
+                    $("#kuangCnt").text((parseInt(_kuangCnt) + 1) + "个回答");
+                    $("#remarkContent").val("");
+                    $("#kuang_content2_daDiv").css("display","block");
+                }
+            }
+        });
+    }
     $(".jiaoliu_div_show p").click(function(){
         console.log(parseInt($(".jiaoliu_div").css('right')))
         if(parseInt($(".jiaoliu_div").css('right')) < -40){

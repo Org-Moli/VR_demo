@@ -17,7 +17,8 @@ import java.util.Map;
 public interface QuestionRemarkMapper {
 
     @Select({
-            "select * from question_remark"
+            "select * from question_remark",
+            "order by createTime desc"
     })
     List<Map<String,Object>> listQuestionRemark();
 
@@ -29,9 +30,9 @@ public interface QuestionRemarkMapper {
 
     @Insert({
             "insert into question_remark",
-            "(userId,userName,content,questionId,createTime)",
+            "(userId,userName,content,questionId,post,createTime)",
             "values",
-            "(#{userId},#{userName},#{content},#{questionId},now())"
+            "(#{userId},#{userName},#{content},#{questionId},#{post},now())"
     })
     int insert(Map<String,Object> paramsMap);
 
@@ -42,7 +43,8 @@ public interface QuestionRemarkMapper {
 
     @Select({
             "select * from question_remark",
-            "where questionId = #{questionId}"
+            "where questionId = #{questionId}",
+            "order by createTime desc"
     })
     List<Map<String,Object>> listQuestionRemarkByQuestionId(@Param("questionId") Integer questionId);
 

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -26,8 +27,10 @@ public class VrInfoManageController {
     private QuestionInfoMapper questionInfoMapper;
 
     @RequestMapping( value = "info" )
-    public String info(Integer id,Model model)
+    public String info(Integer id,Model model,HttpSession session)
     {
+        session.setAttribute("org_userName","测试");
+        session.setAttribute("org_post","安检员");
         Map<String,Object> infoMap = questionInfoMapper.getGatherInfoById(id);
         model.addAttribute("infoMap",infoMap);
 
