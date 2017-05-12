@@ -45,7 +45,7 @@
             height: 0rem;
             position: absolute;
             z-index:100000;
-            left:10rem;
+            left:13rem;
             bottom:5rem;
         }
         .show .inp{
@@ -57,11 +57,11 @@
         .jiaoliu_div{
             position: fixed;
             width:340px;
-            height:660px;
+            height:600px;
             background: #fff;
             right:-354px;
             top:50%;
-            margin-top:-330px;
+            margin-top:-300px;
             z-index: 111;
         }
         .jiaoliu_header{
@@ -94,7 +94,7 @@
             cursor:pointer;
         }
         .jiaoliu_content{
-            height:620px;
+            height:560px;
             overflow: auto;
             padding:0 20px;
         }
@@ -351,20 +351,23 @@
             padding:2px;
         }
         .bigbox{
-            width: 30rem;
-            height:10rem;
+            width: 100vw;
+            height:100vh;
+            box-sizing: border-box;
             position: relative;
         }
         .bigbox_l{
-            width: 30rem;
-            height:12rem;
+            width: 100%;
+            height:100%;
+            box-sizing: border-box;
             float: left;
             z-index: -1;
             position:absolute;
         }
         .bigbox_l iframe{
-            width:30rem;
-            height:12rem;
+            width: 99.9%;
+            height:99.42%;
+            box-sizing: border-box;
             z-index: -1;
         }
         .jiaoliu_div_show{
@@ -375,7 +378,7 @@
             background:url(/img/bg.png) no-repeat;
             background-size:65px 100px;
             right:-1px;
-            top:30%;
+            top:50%;
             padding-top:7px;
             border-radius: 0.2rem 0 0.2rem 0;
             text-align: center;
@@ -493,9 +496,7 @@
             </c:forEach>
         </div>
         <div class="show_bottom">
-
             <button id="StarC">开始对比</button>
-
         </div>
     </div>
 </div>
@@ -597,10 +598,10 @@
                     $(".kuang_content1").hide();
                     $("#questionContent").val("");
                     var _html = "<div class=\"jiaoliu_content_list\">";
-                        _html += "  <p class=\"jiaoliu_content_list_left\"><img src=\"/img/touxiang.jpg\"  />" + _userName + " </p>";
-                        _html += "  <p class=\"jiaoliu_content_list_right\">"+_questionContent+"</p>";
-                        _html += "<p class=\"jiaoliu_content_list_time\">"+ _month  +"月"+ _day +"日"+date.getHours()+":"+date.getMinutes()+"</p>";
-                    $("#jiaoliuContent").append(_html);
+                    _html += "  <p class=\"jiaoliu_content_list_left\"><img src=\"/img/touxiang.jpg\"  />" + _userName + " </p>";
+                    _html += "  <p class=\"jiaoliu_content_list_right\">"+_questionContent+"</p>";
+                    _html += "<p class=\"jiaoliu_content_list_time\">"+ _month  +"月"+ _day +"日"+date.getHours()+":"+date.getMinutes()+"</p>";
+                    $("#jiaoliuContent").prepend(_html);
                 }
             }
         });
@@ -638,7 +639,7 @@
         $(".kuang,.kuang_content1").show();
         $(".kuang_content1").animate({height : "220px"}, 500);
     });
-    $("#cancleBtn").click(function(){
+    $(".kuang_content1 button").click(function(){
         $(".kuang_content1").hide();
         $(".kuang").animate({opacity:"0"}, 500,function(){
             $(".kuang").hide();
