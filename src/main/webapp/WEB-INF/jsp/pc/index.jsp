@@ -91,7 +91,7 @@
 				<div class="connent_box" >
 				  <div class="connent_box_z"  id="showMainDiv" >
 				     <c:forEach  var="gatherInfo" items="${gatherInfoList}" varStatus="status">
-							<div class="connent">
+							<div class="connent" onclick="gotoDetail(${gatherInfo.id});">
 								<img src="${gatherInfo.pic_url}"/>
 								<p class="title"><span>${gatherInfo.chuang}</span>幢<span>${gatherInfo.storey}</span>层全景图</p>
 								<p style="color:#999999">更新于<span><fmt:formatDate value="${gatherInfo.upload_time}" pattern="yyyy年MM月dd HH:mm"/></span></p>
@@ -120,9 +120,11 @@
 			});
 			$("#chuangUl > li").click(function(){
 				 $("#dName").val($(this).val());
+                doSearch();
 			});
 			$("#lcUl > li").click(function(){
 				 $("#lcNum").val($(this).val());
+                doSearch();
 			})
 			$("#cleanFormBtn").click(function(){
 				 $("#searchForm")[0].reset();
@@ -130,6 +132,7 @@
 				 $("#cengshu").html("层数");
 				 $("#dName").val("");
 				 $("#lcNum").val("");
+                doSearch();
 			})
 			$("#qjhcBtn").click(function(){
 				 var a = document.createElement('a');  
@@ -142,26 +145,42 @@
 	              }  
 	              a.click();  
 			});
+            function doSearch()
+            {
+                $.post("../pc/sreachIndexInfo.do",$("#searchForm").serialize(),function(data) {
+                    if(true==data.success){
+                        $("#newUp").hide();
+                        $("#result").show();
+                        var list=data.gatherInfoList;
+                        var showDiv=$("#showMainDiv");
+                        var html="";
+                        $.each(list,function(i,obj){
+                            html+='<div class="connent" onclick="gotoDetail('+obj.id+');"><img src="'+obj.pic_url+'"/>';
+                            html+='<p class="title"><span>'+obj.chuang+'</span>幢<span>'+obj.storey+'</span>层全景图</p>';
+                            html+='<p style="color:#999999">更新于<span>'+new Date(obj.upload_time).Format("yyyy年MM月dd hh:mm")+'</span></p>';
+                            html+='<div class="pinlun"><img src="../img/index/tupiancion.png"/><span>'+obj.pic_num+'</span></div>';
+                            html+='<div class="xiaoxi"><img src="../img/index/xiaoxicion.png"/><span>'+obj.comment_num+'</span></div></div>';
+                        });
+                        showDiv.html(html);
+                    }
+                });
+            }
 			$("#searchImgBtn").click(function(){
-				$.post("../pc/sreachIndexInfo.do",$("#searchForm").serialize(),function(data) {
-					   if(true==data.success){
-						    $("#newUp").hide();
-						    $("#result").show();
-						    var list=data.gatherInfoList;
-						    var showDiv=$("#showMainDiv");
-						    var html="";
-						   $.each(list,function(i,obj){
-							       html+='<div class="connent"><img src="'+obj.pic_url+'"/>';
-							       html+='<p class="title"><span>'+obj.chuang+'</span>幢<span>'+obj.storey+'</span>层全景图</p>';
-							       html+='<p style="color:#999999">更新于<span>'+new Date(obj.upload_time).Format("yyyy年MM月dd hh:mm")+'</span></p>';
-								   html+='<div class="pinlun"><img src="../img/index/tupiancion.png"/><span>'+obj.pic_num+'</span></div>';
-								   html+='<div class="xiaoxi"><img src="../img/index/xiaoxicion.png"/><span>'+obj.comment_num+'</span></div></div>';
-						   });
-						   showDiv.html(html);
-					   }
-					});
+                doSearch();
 			});
-			
+
+            function gotoDetail(id)
+            {
+                var url = '/vr/info.do?id=' + id;
+                openURL(url);
+            }
+
+            function openURL(url)
+            {
+                var tempwindow=window.open();
+                tempwindow.location = url;
+            }
+
 			Date.prototype.Format = function(fmt)   
 			{ 
 			  var o = {   
