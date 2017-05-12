@@ -635,6 +635,7 @@
         $(".show").animate({height : "4rem"}, 500);
     });
     $(".jiaoliu_header_btn").click(function(){//点击新增问题
+        $(".kuang_content2_close").click();
         $(".kuang").animate({opacity:"0.6"}, 0);
         $(".kuang,.kuang_content1").show();
         $(".kuang_content1").animate({height : "220px"}, 500);
