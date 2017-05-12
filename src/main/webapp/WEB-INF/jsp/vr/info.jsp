@@ -504,13 +504,14 @@
     <p>交</p>
     <p>流</p>
     <p>区</p>
-    <p style="color: red;">（${fun:length(listQuestionInfo)}）</p>
+    <p style="color: red;" id="pCnt">（${fun:length(listQuestionInfo)}）</p>
 </div>
 <div class="jiaoliu_div">
     <!--<p class="jiaoliu_div_hide">&gt;&gt;隐藏</p>-->
+    <input type="hidden" value="${fun:length(listQuestionInfo)}" id="questionCnt"/>
     <div class="jiaoliu_header">
         <button class="jiaoliu_header_btn">+<small>新增问题</small></button>
-        <span>共${fun:length(listQuestionInfo)}条</span>
+        <span id="cntText">共${fun:length(listQuestionInfo)}条</span>
     </div>
     <div class="jiaoliu_content" id="jiaoliuContent">
         <c:forEach items="${listQuestionInfo}" var="question">
@@ -585,6 +586,7 @@
             dataType: "json",
             data:{
                 userId:-1,
+                id:${id},
                 userName:_userName,
                 content:_questionContent
             },
@@ -602,6 +604,12 @@
                     _html += "  <p class=\"jiaoliu_content_list_right\">"+_questionContent+"</p>";
                     _html += "<p class=\"jiaoliu_content_list_time\">"+ _month  +"月"+ _day +"日"+date.getHours()+":"+date.getMinutes()+"</p>";
                     $("#jiaoliuContent").prepend(_html);
+
+                    var _questionCnt = parseInt($("#questionCnt").val());
+                    $("#questionCnt").val(_questionCnt + 1);
+                    $("#cntText").text("共" + (_questionCnt + 1) + "条");
+                    $("#pCnt").text("（"+(_questionCnt + 1)+"）");
+
                 }
             }
         });

@@ -17,9 +17,10 @@ import java.util.Map;
 public interface QuestionInfoMapper {
 
     @Select({
-            "select * from question_info"
+            "select * from question_info",
+            "where mainId = #{mainId}"
     })
-    List<Map<String,Object>> listQuestionInfo();
+    List<Map<String,Object>> listQuestionInfoByMainId(@Param("mainId") Integer mainId);
 
     @Select({
             "select * from question_info",
@@ -29,9 +30,9 @@ public interface QuestionInfoMapper {
 
     @Insert({
             "insert into question_info",
-            "(userId,userName,content,state,createTime)",
+            "(userId,userName,content,mainId,state,createTime)",
             "values",
-            "(#{userId},#{userName},#{content},0,now())"
+            "(#{userId},#{userName},#{content},#{mainId},0,now())"
     })
     int insert(Map<String,Object> paramsMap);
 
@@ -58,4 +59,9 @@ public interface QuestionInfoMapper {
             "where chuang = #{chuang} and storey= #{storey}"
     })
     List<Map<String,Object>> listByChuangAndStorey(@Param("chuang") String chuang, @Param("storey") String storey);
+
+    @Update({
+            "update gather_info set comment_num = comment_num + 1 where id = #{id}"
+    })
+    int updateCount(@Param("id") Integer id);
 }

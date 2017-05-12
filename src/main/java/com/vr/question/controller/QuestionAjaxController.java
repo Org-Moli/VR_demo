@@ -32,12 +32,12 @@ public class QuestionAjaxController {
     private QuestionRemarkMapper questionRemarkMapper;
 
     @RequestMapping( value = "listQuestion", produces = { "application/json;charset=UTF-8" } )
-    public @ResponseBody String listQuestion(Integer startPos, Integer maxRows)
+    public @ResponseBody String listQuestion(Integer mainId,Integer startPos, Integer maxRows)
     {
         if(startPos == null) startPos = 0;
         if(maxRows == null) maxRows = 10;
         JSONObject jsonObject = new JSONObject();
-        List questionList = questionInfoMapper.listQuestionInfo();
+        List questionList = questionInfoMapper.listQuestionInfoByMainId(mainId);
         jsonObject.put("questionList",questionList);
         jsonObject.put("success",true);
         return jsonObject.toString();
@@ -54,13 +54,16 @@ public class QuestionAjaxController {
     }
 
     @RequestMapping( value = "saveQuestionInfo", produces = { "application/json;charset=UTF-8" } )
-    public @ResponseBody String saveQuestionInfo(Integer userId, String userName, String content)
+    public @ResponseBody String saveQuestionInfo(Integer id, Integer userId, String userName, String content)
     {
         Map<String,Object> paramsMap = new HashMap<String,Object>();
         paramsMap.put("userId",userId);
         paramsMap.put("userName",userName);
         paramsMap.put("content",content);
+        paramsMap.put("mainId",id);
         questionInfoMapper.insert(paramsMap);
+        //更新数据
+        questionInfoMapper.updateCount(id);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("success",true);
         return jsonObject.toString();

@@ -36,8 +36,10 @@ public class VrInfoManageController {
         model.addAttribute("listChuang",listChuang);
 
         //获取评论
-        List<Map<String,Object>> listQuestionInfo = questionInfoMapper.listQuestionInfo();
+        List<Map<String,Object>> listQuestionInfo = questionInfoMapper.listQuestionInfoByMainId(id);
         model.addAttribute("listQuestionInfo",listQuestionInfo);
+
+        model.addAttribute("id",id);
         return "/vr/info";
     }
 
