@@ -28,7 +28,7 @@ public class GatherProvider {
 	        	paramsMap.put("beginRow", 0);
 	        }
 	        if(paramsMap.get("pageSize")==null){
-	        	paramsMap.put("pageSize", 15);
+	        	paramsMap.put("pageSize", 20);
 	        }
 	        sb.append("  limit #{beginRow},#{pageSize} ");
 	        System.out.println(sb.toString());

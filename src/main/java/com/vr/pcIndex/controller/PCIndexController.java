@@ -34,7 +34,7 @@ public class PCIndexController {
 			 paramsMap.put("beginRow",beginRow);
 		}
 		if(pageSize!=null){
-			 pageSize=pageSize>15?15:pageSize;
+			 pageSize=pageSize>20?20:pageSize;
 			 paramsMap.put("pageSize",pageSize);
 		}
 		List<Map<String, Object>> gatherInfoList = pcIndexMapper.getGatherInfo(paramsMap);
