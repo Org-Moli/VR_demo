@@ -45,8 +45,9 @@
             height: 0rem;
             position: absolute;
             z-index:100000;
-            left:13rem;
+            left:11rem;
             bottom:5rem;
+            top:200px;
         }
         .show .inp{
             margin-right: 1.4rem;
