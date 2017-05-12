@@ -8,27 +8,30 @@ import java.util.Map;
 
 public class GatherProvider {
 	 public String queryOrderByParam(Map<String,Object> paramsMap) {
-	        SQL sql = new SQL().SELECT("*").FROM("gather_info");
-	        StringBuffer  sb=new StringBuffer();
-	        if (paramsMap.get("userName") != null) {
-	        	sb.append(" userName like concat('%',#{userName},'%')");
+	        StringBuffer  sb=new StringBuffer("select * from  gather_info where  1=1 ");
+	        if (paramsMap.get("userName") != null && StringUtils.isNotBlank(paramsMap.get("userName")+"")) {
+	        	sb.append(" and user_name like concat('%',#{userName},'%')");
 	        }
 	        if (paramsMap.get("chuang") != null) {
-	        	sb.append(" chuang = #{chuang}");
+	        	sb.append(" and chuang = #{chuang}");
 	        }
 	        if (paramsMap.get("storey") != null) {
-	        	sb.append(" storey = #{storey}");
+	        	sb.append(" and storey = #{storey}");
 	        }
 	        if (paramsMap.get("timeStart") != null) {
-	        	sb.append(" uploadTime &gt;= to_date(#{timeStart}, 'yyyy-MM-dd hh24:mi:ss')");
+	        	sb.append(" and upload_time >= #{timeStart}");
 	        }
 	        if (paramsMap.get("timeEnd") != null) {
-	        	sb.append(" uploadTime &lt; to_date(#{timeEnd}, 'yyyy-MM-dd hh24:mi:ss')");
+	        	sb.append(" and upload_time  < #{timeEnd} ");
 	        }
-	        if(sb!=null && sb.length()>0){
-	        	sql.WHERE(sb.toString());
+	        if(paramsMap.get("beginRow")==null){
+	        	paramsMap.put("beginRow", 0);
 	        }
-	        System.out.println(sql.toString());
-	        return sql.toString();
+	        if(paramsMap.get("pageSize")==null){
+	        	paramsMap.put("pageSize", 15);
+	        }
+	        sb.append("  limit #{beginRow},#{pageSize} ");
+	        System.out.println(sb.toString());
+	        return sb.toString();
 	    }
 }

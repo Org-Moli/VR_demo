@@ -21,7 +21,7 @@ public interface PcIndexMapper {
      "insert into gather_info",
      "(user_name,user_id,post,telephone,pic_url,pic_num,comment_num,upload_time,chuang,storey,miaoshu,projects,company)",
      "values",
-     "(#{userId},#{userName},#{content},0,now())"
+     "(#{user_name},#{user_id},#{post},#{telephone},#{pic_url},#{pic_num},#{comment_num},#{upload_time},#{chuang},#{storey},#{miaoshu},#{projects},#{company})"
    })
    int insert(Map<String,Object> paramsMap);
 }
