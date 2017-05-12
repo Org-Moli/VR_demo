@@ -9,6 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.vr.pcIndex.dao.PcIndexMapper;
 import com.vr.question.dao.QuestionInfoMapper;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 
  * @author huson
@@ -27,8 +30,14 @@ public class PCIndexController {
 	
 	@RequestMapping(value = "/sreachIndexInfo")
     public ModelAndView sreachIndexInfo(Model model,String cjUserName,String lcNum,String dName,String startTime,String endTime) {
-		System.out.println(cjUserName+":"+lcNum+":"+dName+":"+startTime+":"+endTime);
-		pcIndexMapper.getGatherInfo(cjUserName,dName,lcNum,startTime,endTime);
+        Map<String,Object> paramsMap = new HashMap<>();
+        paramsMap.put("userName",cjUserName);
+        paramsMap.put("chuang",dName);
+        paramsMap.put("storey",lcNum);
+        paramsMap.put("timeStart",startTime);
+        paramsMap.put("timeEnd",endTime);
+		System.out.println(cjUserName + ":" + lcNum + ":" + dName + ":" + startTime + ":" + endTime);
+		pcIndexMapper.getGatherInfo(paramsMap);
         return new ModelAndView("pc/index");
     }
 }

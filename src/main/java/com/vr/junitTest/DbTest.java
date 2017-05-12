@@ -1,5 +1,7 @@
 package com.vr.junitTest;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
@@ -18,7 +20,7 @@ public class DbTest {
 	
 	@Test
 	public void test() {
-		Map<String, Object> gatherInfo = pcIndexMapper.getGatherInfo("小蒋","","","","");
+		List<Map<String, Object>> gatherInfo = pcIndexMapper.getGatherInfo(new HashMap<>());
 		System.out.println(gatherInfo);
 	}
 	

@@ -1,5 +1,6 @@
 package com.vr.pcIndex.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.*;
@@ -13,12 +14,7 @@ public interface PcIndexMapper {
 	
 	
  @SelectProvider(type=GatherProvider.class,method="queryOrderByParam")
- Map<String,Object> getGatherInfo(
-		 @Param("userName")   String userName,
-		 @Param("chuang")     String chuang,
-		 @Param("storey")     String storey,
-		 @Param("timeStart")  String timeStart,
-		 @Param("timeEnd")    String timeEnd);
+ List<Map<String,Object>> getGatherInfo(Map<String,Object> paramsMap);
  
  
   @Insert({
