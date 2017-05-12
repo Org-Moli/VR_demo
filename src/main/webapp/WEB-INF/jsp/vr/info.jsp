@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fun" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -502,84 +503,37 @@
     <p>交</p>
     <p>流</p>
     <p>区</p>
-    <p style="color: red;">（5）</p>
+    <p style="color: red;">（${fun:length(listQuestionInfo)}）</p>
 </div>
 <div class="jiaoliu_div">
     <!--<p class="jiaoliu_div_hide">&gt;&gt;隐藏</p>-->
     <div class="jiaoliu_header">
         <button class="jiaoliu_header_btn">+<small>新增问题</small></button>
-        <span>共13条</span>
+        <span>共${fun:length(listQuestionInfo)}条</span>
     </div>
-    <div class="jiaoliu_content">
-        <div class="jiaoliu_content_list">
-            <p class="jiaoliu_content_list_left">
-                <img src="img/touxiang.jpg"  />王琦
-            </p>
-            <p class="jiaoliu_content_list_right">都是国内热胡歌忽热河谷柔荑花ire</p>
-            <p class="jiaoliu_content_list_time">5月5日&nbsp;14:00</p>
-        </div>
-        <div class="jiaoliu_content_list">
-            <p class="jiaoliu_content_list_left">
-                <img src="img/touxiang.jpg"  />王琦
-            </p>
-            <p class="jiaoliu_content_list_right">都是国内热胡歌忽热河谷柔荑花i</p>
-            <p class="jiaoliu_content_list_time">5月5日&nbsp;14:00</p>
-        </div>
-        <div class="jiaoliu_content_list">
-            <p class="jiaoliu_content_list_left">
-                <img src="img/touxiang.jpg"  />王琦
-            </p>
-            <p class="jiaoliu_content_list_right">都是国内热胡歌忽热河谷柔荑花ire何</p>
-            <p class="jiaoliu_content_list_time">5月5日&nbsp;14:00</p>
-        </div>
-        <div class="jiaoliu_content_list">
-            <p class="jiaoliu_content_list_left">
-                <img src="img/touxiang.jpg"  />王琦
-            </p>
-            <p class="jiaoliu_content_list_right">都是国内热胡歌忽热河谷柔荑花i</p>
-            <p class="jiaoliu_content_list_time">5月5日&nbsp;14:00</p>
-        </div>
-        <div class="jiaoliu_content_list">
-            <p class="jiaoliu_content_list_left">
-                <img src="img/touxiang.jpg"  />王琦
-            </p>
-            <p class="jiaoliu_content_list_right">都是国内热胡歌忽热河谷柔歌会如如何</p>
-            <p class="jiaoliu_content_list_time">5月5日&nbsp;14:00</p>
-        </div>
-        <div class="jiaoliu_content_list">
-            <p class="jiaoliu_content_list_left">
-                <img src="img/touxiang.jpg"  />王琦
-            </p>
-            <p class="jiaoliu_content_list_right">都是国内热胡歌忽热河谷柔荑花ire 和人工湖</p>
-            <p class="jiaoliu_content_list_time">5月5日&nbsp;14:00</p>
-        </div>
-        <div class="jiaoliu_content_list">
-            <p class="jiaoliu_content_list_left">
-                <img src="img/touxiang.jpg"  />王琦
-            </p>
-            <p class="jiaoliu_content_list_right">都是国内热胡歌忽热河谷柔荑花ire 和人会如如何</p>
-            <p class="jiaoliu_content_list_time">5月5日&nbsp;14:00</p>
-        </div>
-        <div class="jiaoliu_content_list">
-            <p class="jiaoliu_content_list_left">
-                <img src="img/touxiang.jpg"  />王琦
-            </p>
-            <p class="jiaoliu_content_list_right">都是国内热胡歌忽热河谷柔荑花ire 何</p>
-            <p class="jiaoliu_content_list_time">5月5日&nbsp;14:00</p>
-        </div>
+    <div class="jiaoliu_content" id="jiaoliuContent">
+        <c:forEach items="${listQuestionInfo}" var="question">
+            <div class="jiaoliu_content_list">
+                <p class="jiaoliu_content_list_left">
+                    <img src="/img/touxiang.jpg"  />${question.userName}
+                </p>
+                <p class="jiaoliu_content_list_right">${question.content}</p>
+                <p class="jiaoliu_content_list_time"><fmt:formatDate value="${question.createTime}" pattern="MM月dd日 HH:mm"/></p>
+            </div>
+        </c:forEach>
     </div>
 </div>
 <div class="kuang"></div>
 <div class="kuang_content1">
     <p>问题详情<span  class="kuang_content1_hide">×</span></p>
-    <textarea name="" rows="" cols=""></textarea>
-    <p class="kuang_content1_p2"><input type="button" value="发布"></button><button type="button">取消</button></p>
+    <textarea name="questionContent" id="questionContent" rows="" cols=""></textarea>
+    <p class="kuang_content1_p2"><input type="button" value="发布" onclick="askQuestion();"></button><button type="button" id="cancleBtn">取消</button></p>
 </div>
 <div class="kuang_content2">
     <span class = "kuang_content2_close">×</span>
     <div class="kuang_content2_wen">
         <div  class="kuang_content2_wen_left">
-            <img src="img/touxiang.jpg" />
+            <img src="/img/touxiang.jpg" />
         </div>
         <div class="kuang_content2_wen_right">
             <p style="color:#000 ;"><big style="color:#189FD9;font-size: 16px;">王琦</big><small>施工员</small></p>
@@ -591,19 +545,19 @@
     <div class="kuang_content2_da">
         <p>2个回答</p>
         <div class="kuang_content2_da_right">
-            <img src="img/touxiang.jpg" />
+            <img src="/img/touxiang.jpg" />
             <p style="color:#189FD9;font-size: 16px;">王琦</p>
             <p class="kuang_content2_da_right_time"><span>施工员</span><span>5月5日&nbsp;14:00</span></p>
             <p class="kuang_content2_da_right_text">都是国内热胡歌忽热河谷柔荑花ire 和人工湖努热滹沱河红歌会如如何0和人工湖努热滹沱河红歌会如如何</p>
         </div>
         <div class="kuang_content2_da_right">
-            <img src="img/touxiang.jpg" />
+            <img src="/img/touxiang.jpg" />
             <p style="color:#189FD9;font-size: 16px;">王琦</p>
             <p class="kuang_content2_da_right_time"><span>施工员</span><span>5月5日&nbsp;14:00</span></p>
             <p class="kuang_content2_da_right_text">都是国内热胡歌忽热河谷柔荑花ire 和人工湖努热滹沱河红歌会如如何0和人工湖努热滹沱河红歌会如如何</p>
         </div>
         <div class="kuang_content2_da_right">
-            <img src="img/touxiang.jpg" />
+            <img src="/img/touxiang.jpg" />
             <p style="color:#189FD9;font-size: 16px;">王琦</p>
             <p class="kuang_content2_da_right_time"><span>施工员</span><span>5月5日&nbsp;14:00</span></p>
             <p class="kuang_content2_da_right_text">都是国内热胡歌忽热河谷柔荑花ire 和人工湖努热滹沱河红歌会如如何0和人工湖努热滹沱河红歌会如如何</p>
@@ -614,6 +568,43 @@
     </div>
 </div>
 <script>
+    function askQuestion()
+    {
+        var _questionContent = $("#questionContent").val();
+        if(_questionContent.length == 0)
+        {
+            alert("请输入问题内容");
+            return;
+        }
+        var _userName = "test";
+        $.ajax({
+            url:'/questionAjax/saveQuestionInfo.do',
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            type: "POST",
+            dataType: "json",
+            data:{
+                userId:-1,
+                userName:_userName,
+                content:_questionContent
+            },
+            success: function ( result )
+            {
+                if(result.success)
+                {
+                    var date = new Date();
+                    var _month = (date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1;
+                    var _day = date.getDay() < 10 ? ("0" + date.getDay()) : date.getDay() ;
+                    $(".kuang_content1").hide();
+                    $("#questionContent").val("");
+                    var _html = "<div class=\"jiaoliu_content_list\">";
+                        _html += "  <p class=\"jiaoliu_content_list_left\"><img src=\"/img/touxiang.jpg\"  />" + _userName + " </p>";
+                        _html += "  <p class=\"jiaoliu_content_list_right\">"+_questionContent+"</p>";
+                        _html += "<p class=\"jiaoliu_content_list_time\">"+ _month  +"月"+ _day +"日"+date.getHours()+":"+date.getMinutes()+"</p>";
+                    $("#jiaoliuContent").append(_html);
+                }
+            }
+        });
+    }
     function openURL(url)
     {
         var tempwindow=window.open();
@@ -647,7 +638,7 @@
         $(".kuang,.kuang_content1").show();
         $(".kuang_content1").animate({height : "220px"}, 500);
     });
-    $(".kuang_content1 button").click(function(){
+    $("#cancleBtn").click(function(){
         $(".kuang_content1").hide();
         $(".kuang").animate({opacity:"0"}, 500,function(){
             $(".kuang").hide();
@@ -657,7 +648,7 @@
         $(".kuang,.kuang_content1,.kuang_content2,.show").hide();
     });
     $(".kuang_content1 input").click(function(){
-        $(".kuang,.kuang_content1").hide();
+        //$(".kuang,.kuang_content1").hide();
     });
 
     $(".kuang_content2_close").click(function(){

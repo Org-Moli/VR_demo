@@ -17,10 +17,9 @@ import java.util.Map;
 public interface QuestionInfoMapper {
 
     @Select({
-            "select * from question_info",
-            "limit #{startPos},#{maxRows}"
+            "select * from question_info"
     })
-    List<Map<String,Object>> listQuestionInfo(@Param("startPos") Integer startPos, @Param("maxRows") Integer maxRows);
+    List<Map<String,Object>> listQuestionInfo();
 
     @Select({
             "select * from question_info",

@@ -37,7 +37,7 @@ public class QuestionAjaxController {
         if(startPos == null) startPos = 0;
         if(maxRows == null) maxRows = 10;
         JSONObject jsonObject = new JSONObject();
-        List questionList = questionInfoMapper.listQuestionInfo(startPos,maxRows);
+        List questionList = questionInfoMapper.listQuestionInfo();
         jsonObject.put("questionList",questionList);
         jsonObject.put("success",true);
         return jsonObject.toString();
