@@ -441,7 +441,7 @@
 			box.find('.apply-btn').click(function()
 			{
 				closeDatePicker();
-				//外部方法 
+				//外部方法
 				doSearch();
 				var dateRange = getDateString(new Date(opt.start))+ opt.separator +getDateString(new Date(opt.end));
 				$(self).trigger('datepicker-apply',
@@ -581,7 +581,7 @@
 		                    var containerOffset = $(opt.container).offset();
 		                    box.css(
 		                    {
-		                        top: offset.top - containerOffset.top + $(self).outerHeight() + 4,
+		                        top:149,
 		                        left: offset.left - containerOffset.left
 		                    });
 		                }
@@ -591,7 +591,7 @@
 		                    {
 		                        box.css(
 		                        {
-		                            top: offset.top+$(self).outerHeight() + parseInt($('body').css('border-top') || 0,10 ),
+		                            top: 149,
 		                            left: offset.left
 		                        });
 		                    }
@@ -599,7 +599,7 @@
 		                    {
 		                        box.css(
 		                        {
-		                            top: offset.top+$(self).outerHeight() + parseInt($('body').css('border-top') || 0,10 ),
+		                            top: 149,
 		                            left: offset.left + $(self).width() - box.width() - 16
 		                        });
 		                    }
