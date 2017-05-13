@@ -4,10 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>全景对比</title>
 </head>
 <style>
     *{margin: 0;padding: 0;}
+    body,html{
+        height: 100%;
+    }
     body{
         font-size:12px;
         font-size:0.3rem ; /* 12÷64=0.18 */
@@ -35,9 +38,9 @@
     document.getElementsByTagName("html")[0].style.fontSize = offWidth + 'px'; //把rem的值复制给顶级标签html的font-size
 </script>
 <body>
-<div style="width: 30rem;height:12rem;">
-    <div style="width: 15rem;height:12rem;float: left;">
-        <iframe src="http://720yun.com/t/6fdjO7tmrk3" style="width:15rem;height:12rem;"></iframe>
+<div style="width: 30rem;height:100%;">
+    <div style="width: 15rem;height:100%;float: left;">
+        <iframe src="http://720yun.com/t/6fdjO7tmrk3" style="width:15rem;height:100%;"></iframe>
         <div class="box" style="width: 8rem;height:4rem;position:absolute;z-index: 99;top:0.3rem;left:0.23rem">
             <p>当前项目:  ${infoMap.projects}</p>
             <p>拍摄时间:  <fmt:formatDate value="${infoMap.upload_time}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
@@ -46,8 +49,8 @@
             <p>所属职位:   ${infoMap.post}</p>
         </div>
     </div>
-    <div style="width: 15rem;height:12rem;float: left;">
-        <iframe src="http://720yun.com/t/662jO7tmrk4" style="width: 15rem;height: 12rem;"></iframe>
+    <div style="width: 15rem;height:100%;float: left;">
+        <iframe src="http://720yun.com/t/662jO7tmrk4" style="width: 15rem;height:100%;"></iframe>
         <div class="box" style="width: 8rem;height:4rem;position:absolute;z-index: 99;top:0.3rem;left:15.23rem">
             <p>当前项目:  ${infoMap1.projects}</p>
             <p>拍摄时间:  <fmt:formatDate value="${infoMap1.upload_time}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
@@ -59,4 +62,5 @@
 </div>
 </body>
 </html>
+
 

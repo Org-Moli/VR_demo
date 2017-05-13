@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>全景详情</title>
     <script src="/script/jquery-1.11.0.js"></script>
     <style>
         *{margin: 0;padding: 0;}
