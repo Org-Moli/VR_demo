@@ -23,11 +23,11 @@
 					<img src="../img/index/logo.png" />
 				</div>
 				<div class="height_r">
-					<input type="text" placeholder="输入关键字" class="header_r_inp" name="cjUserName"/>
+					<input type="text" placeholder="输入采集人姓名" class="header_r_inp" name="cjUserName"/>
 					<img src="../img/index/sousuo.png" class="sousuo" id="searchImgBtn"/>
 					<div class="touxiang">
 						<img src="../img/index/touxiang.png" />
-						<span>李奇峰</span>
+						<span>${org_userName}</span>
 					</div>
 				</div>
 			</div>

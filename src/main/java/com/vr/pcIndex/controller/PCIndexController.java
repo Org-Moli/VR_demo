@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * 
  * @author huson
@@ -28,7 +30,7 @@ public class PCIndexController {
     private PcIndexMapper pcIndexMapper;
 	
 	@RequestMapping(value = "/index")
-    public ModelAndView index(Model model,Integer beginRow,Integer pageSize) {
+    public ModelAndView index(Model model,Integer beginRow,Integer pageSize,HttpSession session) {
 		Map<String,Object> paramsMap = new HashMap<String,Object>();
 		if(beginRow!=null){
 			 paramsMap.put("beginRow",beginRow);
@@ -41,6 +43,8 @@ public class PCIndexController {
 		System.out.println("index reSize="+gatherInfoList.size());
 		ModelAndView modelAndView = new ModelAndView("pc/index");
 		modelAndView.addObject("gatherInfoList", gatherInfoList);
+		session.setAttribute("org_userName","测试");
+	    session.setAttribute("org_post","安检员");
         return modelAndView;
     }
 	
