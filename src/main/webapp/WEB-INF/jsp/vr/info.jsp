@@ -488,10 +488,11 @@
             <c:forEach items="${listChuang}" var="chuang" varStatus="st">
                 <c:choose>
                     <c:when test="${st.count % 3 == 0}">
-                        <div class="inp" style="margin-right:0 ;"><input name="oneBox" value="${chuang.id}" onclick="changeCmp();" type="checkbox"/>${chuang.user_name}</div>
+                        <div class="inp" style="margin-right:0 ;">
+                            <input name="oneBox" value="${chuang.id}" onclick="changeCmp();" type="checkbox" id="check${st.count}"/><label for="check${st.count}">${chuang.user_name}</label></div>
                     </c:when>
                     <c:otherwise>
-                        <div class="inp"><input name="oneBox" type="checkbox" value="${chuang.id}" onclick="changeCmp();"/>${chuang.user_name}</div>
+                        <div class="inp"><input name="oneBox" type="checkbox" value="${chuang.id}" onclick="changeCmp();" id="check${st.count}"/><label for="check${st.count}">${chuang.user_name}</label></div>
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
