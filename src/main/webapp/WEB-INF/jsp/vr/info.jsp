@@ -669,15 +669,8 @@
     });
 
     $(".kuang_content2_close").click(function(){
+        $(".kuang_content2").hide();
         $(this).css({background:"#1264c8",color:"#fff"});
-        setTimeout(function(){
-            $(".kuang_content2").hide();
-            $(".kuang").animate({opacity:"0"}, 300,function(){
-                $(".kuang").hide();
-                $(".kuang_content2_close").css({background:"none",color:"#189FD9"});
-            });
-        },200);
-
     });
     function showContent(id){
         $('.kuang_content1').hide();

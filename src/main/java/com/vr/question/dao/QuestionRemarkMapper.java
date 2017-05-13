@@ -44,7 +44,7 @@ public interface QuestionRemarkMapper {
     @Select({
             "select * from question_remark",
             "where questionId = #{questionId}",
-            "order by createTime desc"
+            "order by createTime asc"
     })
     List<Map<String,Object>> listQuestionRemarkByQuestionId(@Param("questionId") Integer questionId);
 
