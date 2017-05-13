@@ -284,7 +284,7 @@
         }
         .kuang_content2_da_right_time>span:nth-of-type(2){
             float:right;
-            color:#333;
+            color:#666;
         }
         .kuang_content2_da_right{
             width:396px;
