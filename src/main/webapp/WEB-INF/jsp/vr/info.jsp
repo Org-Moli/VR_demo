@@ -434,6 +434,18 @@
             font-family: "微软雅黑";
             cursor:pointer;
         }
+        .show_t  #close{
+            cursor:pointer;
+            border:none;
+            width: 40px;
+            height: 20px;
+            background: #1C7BEF;
+            color: white;
+            font-family: "微软雅黑";
+            font-size: 14px;
+            float: right;
+            margin-top:9px;
+        }
     </style>
     <script>
         window.onload=function(){
@@ -482,7 +494,7 @@
         <p style="color: red;">（5）</p>
     </div>-->
     <div class="show" style="z-index:9990;">
-        <div class="show_t">图片比对</div>
+        <div class="show_t">图片比对<button id="close">关闭</button></div>
         <div class="show_top">当前楼层三位人员拍照，请选择两人进行对比。</div>
         <div class="show_center">
             <c:forEach items="${listChuang}" var="chuang" varStatus="st">
@@ -589,13 +601,14 @@
                 {
                     var date = new Date();
                     var _month = (date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1;
-                    var _day = date.getDay() < 10 ? ("0" + date.getDay()) : date.getDay() ;
+                    var _day = date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate() ;
+                    var _minutes = date.getMinutes() < 10 ? ("0" + date.getMinutes()) : date.getMinutes() ;
                     $(".kuang_content1").hide();
                     $("#questionContent").val("");
                     var _html = "<div class=\"jiaoliu_content_list\" onclick='showContent("+result.id+");'>";
                     _html += "  <p class=\"jiaoliu_content_list_left\"><img src=\"/img/touxiang.jpg\"  />${org_userName}</p>";
                     _html += "  <p class=\"jiaoliu_content_list_right\">"+_questionContent+"</p>";
-                    _html += "<p class=\"jiaoliu_content_list_time\">"+ _month  +"月"+ _day +"日"+date.getHours()+":"+date.getMinutes()+"</p>";
+                    _html += "<p class=\"jiaoliu_content_list_time\">"+ _month  +"月"+ _day +"日"+date.getHours()+":"+_minutes+"</p>";
                     $("#jiaoliuContent").prepend(_html);
 
                     var _questionCnt = parseInt($("#questionCnt").val());
@@ -681,7 +694,7 @@
             {
                 $("#userNameTr").text(result.questionMap.userName);
                 $("#postTr").text(result.questionMap.post);
-                $("#dateTr").text(result.questionMap.date);
+                $("#dateTr").text(result.date);
                 $("#contetnTr").text(result.questionMap.content);
 
                 loadRemarkInfo(id);
@@ -748,11 +761,12 @@
                 {
                     var date = new Date();
                     var _month = (date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : date.getMonth() + 1;
-                    var _day = date.getDay() < 10 ? ("0" + date.getDay()) : date.getDay() ;
+                    var _day = date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate() ;
+                    var _minutes = date.getMinutes() < 10 ? ("0" + date.getMinutes()) : date.getMinutes() ;
                     var _html = "<div class=\"kuang_content2_da_right\">";
                         _html +=    "<img src=\"/img/touxiang.jpg\" />";
                         _html +=    "<p style=\"color:#189FD9;font-size: 16px;\">${org_userName}</p>";
-                        _html +=    "<p class=\"kuang_content2_da_right_time\"><span>${org_post}</span><span>"+_month+"月"+_day+"日"+date.getHours()+":"+date.getMinutes()+"</span></p>";
+                        _html +=    "<p class=\"kuang_content2_da_right_time\"><span>${org_post}</span><span>"+_month+"月"+_day+"日"+date.getHours()+":"+_minutes+"</span></p>";
                         _html +=    "<p class=\"kuang_content2_da_right_text\">"+_remarkContent+"</p>";
                         _html += "</div>";
                     $("#kuangCnt").after(_html);
@@ -780,8 +794,9 @@
         $(".jiaoliu_div").animate({right : "-354px"}, 500);
     });
     $(".kuang_content1_hide").click(function(){
+        $(".kuang_content1").hide();
         $(this).css({background:"#1264c8"});
-        setTimeout("$('.kuang,.kuang_content1').hide();$('.kuang_content1_hide').css({background:'#1c7bef'});",200)
+        setTimeout("$('.kuang_content1_hide').css({background:'#1c7bef'});",200)
     });
     function hideQuestion()
     {
@@ -790,6 +805,10 @@
             $(".jiaoliu_div_show").animate({right : "-10px"}, 500);
         }
     }
+    $("#close").click(function(){
+        $(".kuang,.show").hide();
+        $("input[name='oneBox']").each(function(){this.checked=false;});
+    });
 </script>
 </body>
 </html>
