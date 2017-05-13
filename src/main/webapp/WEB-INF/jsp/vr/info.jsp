@@ -769,7 +769,7 @@
                         _html +=    "<p class=\"kuang_content2_da_right_time\"><span>${org_post}</span><span>"+_month+"月"+_day+"日"+date.getHours()+":"+_minutes+"</span></p>";
                         _html +=    "<p class=\"kuang_content2_da_right_text\">"+_remarkContent+"</p>";
                         _html += "</div>";
-                    $("#kuangCnt").after(_html);
+                    $("#kuang_content2_daDiv").append(_html);
                     var _kuangCnt = $("#kuangCnt").attr("alt");
                     $("#kuangCnt").attr("alt",parseInt(_kuangCnt) + 1);
                     $("#kuangCnt").text((parseInt(_kuangCnt) + 1) + "个回答");
