@@ -58,9 +58,11 @@ public interface QuestionInfoMapper {
 
     @Select({
             "select * from gather_info",
-            "where chuang = #{chuang} and storey= #{storey}"
+            "where chuang = #{chuang} and storey= #{storey}",
+            "and DATE_FORMAT(upload_time,'%Y-%m-%d') = #{uploadTime}"
     })
-    List<Map<String,Object>> listByChuangAndStorey(@Param("chuang") String chuang, @Param("storey") String storey);
+    List<Map<String,Object>> listByChuangAndStorey(@Param("chuang") String chuang, @Param("storey") String storey,
+                                                   @Param("uploadTime") String uploadTime);
 
     @Update({
             "update gather_info set comment_num = comment_num + 1 where id = #{id}"

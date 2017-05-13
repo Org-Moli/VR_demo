@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -34,8 +36,10 @@ public class VrInfoManageController {
         Map<String,Object> infoMap = questionInfoMapper.getGatherInfoById(id);
         model.addAttribute("infoMap",infoMap);
 
+        String _fromatDate = new SimpleDateFormat("yyyy-MM-dd").format(infoMap.get("upload_time"));
+
         List<Map<String,Object>> listChuang = questionInfoMapper
-                .listByChuangAndStorey((String) infoMap.get("chuang"), (String) infoMap.get("storey"));
+                .listByChuangAndStorey((String) infoMap.get("chuang"), (String) infoMap.get("storey"),_fromatDate);
         model.addAttribute("listChuang",listChuang);
 
         //获取评论

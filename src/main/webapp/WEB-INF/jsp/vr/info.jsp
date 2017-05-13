@@ -464,10 +464,10 @@
 
 <body>
 <div class="bigbox">
-    <div class="bigbox_l">
+    <div class="bigbox_l" style="z-index: 9988">
         <iframe src="http://720yun.com/t/6fdjO7tmrk3"></iframe>
     </div>
-    <div class="box">
+    <div class="box" style="z-index:9989;">
         <p>当前项目:  ${infoMap.projects}</p>
         <p>拍摄时间:  <fmt:formatDate value="${infoMap.upload_time}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
         <p>拍摄楼层:  ${infoMap.chuang}幢${infoMap.storey}层</p>
@@ -481,7 +481,7 @@
         <p>区</p>
         <p style="color: red;">（5）</p>
     </div>-->
-    <div class="show">
+    <div class="show" style="z-index:9989;">
         <div class="show_t">图片比对</div>
         <div class="show_top">当前楼层三位人员拍照，请选择两人进行对比。</div>
         <div class="show_center">
@@ -501,13 +501,13 @@
         </div>
     </div>
 </div>
-<div class="jiaoliu_div_show">
+<div class="jiaoliu_div_show" style="z-index: 9989">
     <p>交</p>
     <p>流</p>
     <p>区</p>
     <p style="color: red;" id="pCnt">（${fun:length(listQuestionInfo)}）</p>
 </div>
-<div class="jiaoliu_div">
+<div class="jiaoliu_div" style="z-index:9989;">
     <!--<p class="jiaoliu_div_hide">&gt;&gt;隐藏</p>-->
     <input type="hidden" value="${fun:length(listQuestionInfo)}" id="questionCnt"/>
     <div class="jiaoliu_header">
@@ -527,12 +527,12 @@
     </div>
 </div>
 <div class="kuang"></div>
-<div class="kuang_content1">
+<div class="kuang_content1" style="z-index:9989;">
     <p>问题详情<span  class="kuang_content1_hide">×</span></p>
     <textarea name="questionContent" id="questionContent" rows="" cols=""></textarea>
     <p class="kuang_content1_p2"><input type="button" value="发布" onclick="askQuestion();"></button><button type="button" id="cancleBtn">取消</button></p>
 </div>
-<div class="kuang_content2">
+<div class="kuang_content2" style="z-index:9989;">
     <span class = "kuang_content2_close">×</span>
     <div class="kuang_content2_wen">
         <div  class="kuang_content2_wen_left">
