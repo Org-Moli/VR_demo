@@ -481,7 +481,7 @@
         <p>区</p>
         <p style="color: red;">（5）</p>
     </div>-->
-    <div class="show" style="z-index:9989;">
+    <div class="show" style="z-index:9990;">
         <div class="show_t">图片比对</div>
         <div class="show_top">当前楼层三位人员拍照，请选择两人进行对比。</div>
         <div class="show_center">
@@ -501,13 +501,13 @@
         </div>
     </div>
 </div>
-<div class="jiaoliu_div_show" style="z-index: 9989">
+<div class="jiaoliu_div_show" style="z-index: 9990">
     <p>交</p>
     <p>流</p>
     <p>区</p>
     <p style="color: red;" id="pCnt">（${fun:length(listQuestionInfo)}）</p>
 </div>
-<div class="jiaoliu_div" style="z-index:9989;">
+<div class="jiaoliu_div" style="z-index:9990;">
     <!--<p class="jiaoliu_div_hide">&gt;&gt;隐藏</p>-->
     <input type="hidden" value="${fun:length(listQuestionInfo)}" id="questionCnt"/>
     <div class="jiaoliu_header">
@@ -526,13 +526,13 @@
         </c:forEach>
     </div>
 </div>
-<div class="kuang"></div>
-<div class="kuang_content1" style="z-index:9989;">
+<div class="kuang" onclick="hideQuestion();" style="z-index:9989;"></div>
+<div class="kuang_content1" style="z-index:9990;">
     <p>问题详情<span  class="kuang_content1_hide">×</span></p>
-    <textarea name="questionContent" id="questionContent" rows="" cols=""></textarea>
+    <textarea name="questionContent" id="questionContent" rows="" cols="" placeholder="请输入全景图中发现的问题"></textarea>
     <p class="kuang_content1_p2"><input type="button" value="发布" onclick="askQuestion();"></button><button type="button" id="cancleBtn">取消</button></p>
 </div>
-<div class="kuang_content2" style="z-index:9989;">
+<div class="kuang_content2" style="z-index:9990;">
     <span class = "kuang_content2_close">×</span>
     <div class="kuang_content2_wen">
         <div  class="kuang_content2_wen_left">
@@ -635,7 +635,8 @@
         $(".show").animate({height : "4rem"}, 500);
     });
     $(".jiaoliu_header_btn").click(function(){//点击新增问题
-        $(".kuang_content2_close").click();
+        //$(".kuang_content2_close").click();
+        $(".kuang_content2").hide();
         $(".kuang").animate({opacity:"0.6"}, 0);
         $(".kuang,.kuang_content1").show();
         $(".kuang_content1").animate({height : "220px"}, 500);
@@ -665,6 +666,7 @@
 
     });
     function showContent(id){
+        $('.kuang_content1').hide();
         $("#remarkContent").attr("alt",id);
         $.ajax({
             url:'/questionAjax/getQuestionById.do',
@@ -771,6 +773,7 @@
             $(".jiaoliu_div").animate({right : "-344px"}, 500);
             $(".jiaoliu_div_show").animate({right : "-10px"}, 500);
         }
+        $(".kuang").show();
     });
     $(".jiaoliu_div_hide").click(function(){
         $(".jiaoliu_div").animate({right : "-354px"}, 500);
@@ -779,6 +782,13 @@
         $(this).css({background:"#1264c8"});
         setTimeout("$('.kuang,.kuang_content1').hide();$('.kuang_content1_hide').css({background:'#1c7bef'});",200)
     });
+    function hideQuestion()
+    {
+        if(parseInt($(".jiaoliu_div").css('right')) > -40){
+            $(".jiaoliu_div").animate({right : "-344px"}, 500);
+            $(".jiaoliu_div_show").animate({right : "-10px"}, 500);
+        }
+    }
 </script>
 </body>
 </html>
