@@ -441,6 +441,8 @@
 			box.find('.apply-btn').click(function()
 			{
 				closeDatePicker();
+				//外部方法 
+				doSearch();
 				var dateRange = getDateString(new Date(opt.start))+ opt.separator +getDateString(new Date(opt.end));
 				$(self).trigger('datepicker-apply',
 				{

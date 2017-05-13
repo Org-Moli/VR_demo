@@ -132,7 +132,23 @@
 				 $("#cengshu").html("层数");
 				 $("#dName").val("");
 				 $("#lcNum").val("");
-                doSearch();
+				 $.post("../pc/sreachIndexInfo.do",$("#searchForm").serialize(),function(data) {
+	                    if(true==data.success){
+	                        $("#newUp").show();
+	                        $("#result").hide();
+	                        var list=data.gatherInfoList;
+	                        var showDiv=$("#showMainDiv");
+	                        var html="";
+	                        $.each(list,function(i,obj){
+	                            html+='<div class="connent" onclick="gotoDetail('+obj.id+');"><img src="'+obj.pic_url+'"/>';
+	                            html+='<p class="title"><span>'+obj.chuang+'</span>幢<span>'+obj.storey+'</span>层全景图</p>';
+	                            html+='<p style="color:#999999">更新于<span>'+new Date(obj.upload_time).Format("yyyy年MM月dd hh:mm")+'</span></p>';
+	                            html+='<div class="pinlun"><img src="../img/index/tupiancion.png"/><span>'+obj.pic_num+'</span></div>';
+	                            html+='<div class="xiaoxi"><img src="../img/index/xiaoxicion.png"/><span>'+obj.comment_num+'</span></div></div>';
+	                        });
+	                        showDiv.html(html);
+	                    }
+	                });
 			})
 			$("#qjhcBtn").click(function(){
 				 var a = document.createElement('a');  
@@ -199,11 +215,6 @@
 			  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
 			  return fmt;   
 			}  
-			
-			
-			
-			
-			
 			
 			
 			
