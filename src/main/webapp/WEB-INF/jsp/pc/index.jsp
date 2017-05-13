@@ -54,7 +54,7 @@
 					</div>
 					<div class="select">
 						<div>
-							<h2 class="first"><input id="date-range0" size="30" value="" class="inp" placeholder="点击选择日期" name="searchTime"><!--<span id="date-range0">日期</span>--><!--<img src="../img/index/xia.png"/>--></h2>
+							<h2 class="first"><input id="date-range0" size="30" value="" class="inp" placeholder="日期" name="searchTime"><img class="dateshow" src="../img/index/xia.png"/><!--<span id="date-range0">日期</span>--><!--<img src="../img/index/xia.png"/>--></h2>
 							<!--<ul>
 								<li>35345</li>
 								<li>35345</li>
@@ -110,9 +110,16 @@
 			</div>
 		</div>
 		<script>
-			$(".select h2").click(function(){
-				$(this).next().slideToggle(200);
-			});
+		$(".select .xiala").click(function(){
+			$(".select .xiala").next().slideUp(0);
+			$(this).next().slideToggle(200);
+		});
+		
+		$(".dateshow").click(function(){
+			$(".inp").click();
+			return false;
+		});
+		
 			$(".select ul li").click(function(){
 				var cont = $(this).html();
 				$(this).parent().prev().find("span").html(cont);
