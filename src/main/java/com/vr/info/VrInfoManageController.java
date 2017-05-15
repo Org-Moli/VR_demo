@@ -31,8 +31,6 @@ public class VrInfoManageController {
     @RequestMapping( value = "info" )
     public String info(Integer id,Model model,HttpSession session)
     {
-        session.setAttribute("org_userName","测试");
-        session.setAttribute("org_post","安检员");
         Map<String,Object> infoMap = questionInfoMapper.getGatherInfoById(id);
         model.addAttribute("infoMap",infoMap);
 

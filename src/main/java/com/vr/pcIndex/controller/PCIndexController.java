@@ -30,7 +30,8 @@ public class PCIndexController {
     private PcIndexMapper pcIndexMapper;
 	
 	@RequestMapping(value = "/index")
-    public ModelAndView index(Model model,Integer beginRow,Integer pageSize,HttpSession session) {
+    public ModelAndView index(Model model,String loginName,String position,
+                              Integer beginRow,Integer pageSize,HttpSession session) {
 		Map<String,Object> paramsMap = new HashMap<String,Object>();
 		if(beginRow!=null){
 			 paramsMap.put("beginRow",beginRow);
@@ -43,8 +44,8 @@ public class PCIndexController {
 		System.out.println("index reSize="+gatherInfoList.size());
 		ModelAndView modelAndView = new ModelAndView("pc/index");
 		modelAndView.addObject("gatherInfoList", gatherInfoList);
-		session.setAttribute("org_userName","测试");
-	    session.setAttribute("org_post","安检员");
+		session.setAttribute("org_userName",loginName);
+	    session.setAttribute("org_post",position);
         return modelAndView;
     }
 	

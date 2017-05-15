@@ -16,6 +16,11 @@
 		<title></title>
 	</head>
 	<body>
+    <form name="form1" method="post" action="http://vr.uranusvr.com.cn/member/login" id="logonForm" target="_blank">
+        <input type="hidden" name="dopost" value="login">
+        <input type="hidden" name="userid" value="admin">
+        <input type="hidden" name="pwd" value="admin">
+    </form>
 	  <form  id="searchForm">
 		<div class="header_box">
 			<div class="header">
@@ -142,7 +147,7 @@
 				 doSearch(false,true);
 			})
 			$("#qjhcBtn").click(function(){
-				 var a = document.createElement('a');  
+				 /*var a = document.createElement('a');
 	              a.setAttribute('href', "http://vr.uranusvr.com.cn/member/login");  
 	              a.setAttribute('target','_blank');  
 	              a.setAttribute('id', "qjhcId");  
@@ -150,7 +155,8 @@
 	              if(!document.getElementById("qjhcId")) {                       
 	                  document.body.appendChild(a);  
 	              }  
-	              a.click();  
+	              a.click(); */
+                $("#logonForm").submit();
 			});
             function doSearch(isAppend,isSreach)
             {

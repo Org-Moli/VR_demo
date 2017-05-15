@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
-    <title>three.js webgl - loaders - OBJ loader</title>
+    <title>three.js webgl - OBJLoader + MTLLoader</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <style>
@@ -28,15 +27,21 @@
 
 <body>
 <div id="info">
-    <a href="http://threejs.org" target="_blank">three.js</a> - OBJLoader test
+    <a href="http://threejs.org" target="_blank">three.js</a> - OBJLoader + MTLLoader
 </div>
 
 <script src="/script/three/three.min.js"></script>
+
+<script src="/script/three/loaders/DDSLoader.js"></script>
+<script src="/script/three/loaders/MTLLoader.js"></script>
 <script src="/script/three/loaders/OBJLoader.js"></script>
+
+<script src="/script/three/Detector.js"></script>
+<script src="/script/three/stats.min.js"></script>
 
 <script>
 
-    var container;
+    var container, stats;
 
     var camera, scene, renderer;
 
@@ -62,23 +67,14 @@
 
         scene = new THREE.Scene();
 
-        var ambient = new THREE.AmbientLight( 0x101030 );
+        var ambient = new THREE.AmbientLight( 0x444444 );
         scene.add( ambient );
 
         var directionalLight = new THREE.DirectionalLight( 0xffeedd );
-        directionalLight.position.set( 0, 0, 1 );
+        directionalLight.position.set( 0, 0, 1 ).normalize();
         scene.add( directionalLight );
 
-        // texture
-
-        var manager = new THREE.LoadingManager();
-        manager.onProgress = function ( item, loaded, total ) {
-
-            console.log( item, loaded, total );
-
-        };
-
-        var texture = new THREE.Texture();
+        // model
 
         var onProgress = function ( xhr ) {
             if ( xhr.lengthComputable ) {
@@ -87,37 +83,27 @@
             }
         };
 
-        var onError = function ( xhr ) {
-        };
+        var onError = function ( xhr ) { };
 
+        THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
 
-        var loader = new THREE.ImageLoader( manager );
-        loader.load( 'obj/te/54050dbe68df1.jpg', function ( image ) {
+        var mtlLoader = new THREE.MTLLoader();
+        mtlLoader.setPath( 'obj/06/' );
+        mtlLoader.load( '002.mtl', function( materials ) {
 
-            texture.image = image;
-            texture.needsUpdate = true;
+            materials.preload();
 
-        } );
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials( materials );
+            objLoader.setPath( 'obj/06/' );
+            objLoader.load( '002.obj', function ( object ) {
 
-        // model
+                object.position.y = - 95;
+                scene.add( object );
 
-        var loader = new THREE.OBJLoader( manager );
-        loader.load( 'obj/te/te.obj', function ( object ) {
+            }, onProgress, onError );
 
-            object.traverse( function ( child ) {
-
-                if ( child instanceof THREE.Mesh ) {
-
-                    child.material.map = texture;
-
-                }
-
-            } );
-
-            object.position.y = - 95;
-            scene.add( object );
-
-        }, onProgress, onError );
+        });
 
         //
 
